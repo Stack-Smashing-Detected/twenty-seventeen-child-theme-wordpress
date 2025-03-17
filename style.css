@@ -41,3 +41,8 @@ body.has-header-image .site-title a,
 body.has-header-video .site-title a {
     color:#5ff6c3;
 }
+
+.menu-top-menu-container {
+    background-color:#5ff6c3;
+    border-radius: 0.375rem;
+}

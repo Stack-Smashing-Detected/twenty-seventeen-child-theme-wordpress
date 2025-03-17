@@ -1,7 +1,6 @@
 <?php
 
 //*********Instead of @import Use enqueue ad recommended by WordPress Codex **********
-
 /**
  * Enqueues Styles and Scripts
  * @return void
@@ -19,9 +18,15 @@ function my_child_theme_enqueue_styles()
 }
 add_action('wp_enqueue_scripts', 'my_child_theme_enqueue_styles');
 
-function modify_homepage_post_action($post) {
+/**
+ * Modify the post on the homepage which should be the 'home' post.
+ *
+ * @param $post
+ * @return void
+ */
+function modify_homepage_post_action($post): void
+{
     // get the post on the home page and modify it.
-    $old_content = $post->post_content;
     if(is_page('home')) {
         add_filter('the_title', function($title) use ($post) {
             if(in_the_loop() && is_main_query() && $post->post_title == 'Home'){
@@ -32,6 +37,10 @@ function modify_homepage_post_action($post) {
         add_filter('the_content', function($content) use ($post) {
             if(in_the_loop() && is_main_query() && $post->post_title == 'Home'){
                 return 'This is my developer site, feel free to check out my content or contact me via email or social media.';
+            }
+
+            if($post->post_title == 'About'){
+                return 'You can write a description about yourself and what you do as a software developer';
             }
             return $content;
         });
