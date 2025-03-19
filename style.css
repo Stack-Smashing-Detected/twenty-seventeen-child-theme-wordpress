@@ -42,7 +42,24 @@ body.has-header-video .site-title a {
     color:#5ff6c3;
 }
 
-.menu-top-menu-container {
-    background-color:#5ff6c3;
+.menu-scroll-down {
+    margin-left: 1rem;
+}
+
+
+.site-header .navigation-top .wrap{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    gap: 8px;
+}
+
+.site-header .main-navigation {
+    background-color: #5ff6c3;
     border-radius: 0.375rem;
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    justify-content: space-evenly;
+    gap: 20px;
 }

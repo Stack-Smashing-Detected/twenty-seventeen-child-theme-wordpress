@@ -19,6 +19,13 @@ function my_child_theme_enqueue_styles()
 add_action('wp_enqueue_scripts', 'my_child_theme_enqueue_styles');
 
 /**
+ * Child widget generator
+ */
+function my_child_theme_widget_init(){
+
+}
+
+/**
  * Modify the post on the homepage which should be the 'home' post.
  *
  * @param $post
@@ -48,3 +55,23 @@ function modify_homepage_post_action($post): void
 }
 add_action('the_post', 'modify_homepage_post_action');
 
+/**
+ * Modifies the content of posts that are loaded on the other pages (i.e. About, Contact, etc)
+ * @return void
+ */
+function modify_post_on_template_load(){
+    global $post;
+    if(is_singular()){
+        add_filter('the_content', function($content) use ($post) {
+           if($post->post_title == 'About'){
+               return 'Introduce yourself, write about what you do as a developer and what your goal is as a developer';
+           }
+           if($post->post_title == 'Contact'){
+               return 'Show your contact information here, you may also include information 
+               about how others may get in contact with you, maybe add a contact form that links to your email address';
+           }
+           return $content;
+        });
+    }
+}
+add_action('template_redirect', 'modify_post_on_template_load');
