@@ -67,6 +67,13 @@ add_action('the_post', 'modify_homepage_post_action');
 function modify_post_on_template_load(){
     global $post;
     if(is_singular()){
+        add_filter('the_title', function($title) use ($post) {
+            if($post->post_title == 'Blog') {
+                return 'Developer Blog';
+            }
+            return $title;
+        });
+
         add_filter('the_content', function($content) use ($post) {
            if($post->post_title == 'About'){
                return 'Introduce yourself, write about what you do as a developer and what your goal is as a developer';
