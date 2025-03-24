@@ -106,4 +106,4 @@ function modify_post_on_template_load(){
 }
 add_action('template_redirect', 'modify_post_on_template_load');
 
-
+add_filter('wp_img_tag_add_auto_sizes', '__return_false');
