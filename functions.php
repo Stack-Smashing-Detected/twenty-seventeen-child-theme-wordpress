@@ -51,11 +51,8 @@ function modify_homepage_post_action($post): void
         });
         add_filter('the_content', function($content) use ($post) {
             if(in_the_loop() && is_main_query() && $post->post_title == 'Home'){
-                return 'This is my developer site, feel free to check out my content or contact me via email or social media.';
-            }
-
-            if($post->post_title == 'About'){
-                return 'You can write a description about yourself and what you do as a software developer';
+                return 'This is a template for a developer website, you can change this content
+                using functions.php with "the_post" action hook in combination with "the_content" filter.';
             }
             return $content;
         });
